@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NATHAN FASIL | Software Engineer</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter'] },
+      colors: { brand: '#0071e3' }
+    }
+  }
+}
+</script>
+
+<style>
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Inter, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.dark body {
+  background: #000;
+  color: #f5f5f7;
+}
+
+/* NAV */
+.nav {
+  backdrop-filter: blur(30px);
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.dark .nav {
+  background: rgba(20,20,20,0.55);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* CARD */
+.card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(.2,.8,.2,1);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.dark .card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.card:hover {
+  transform: translateY(-12px) scale(1.02);
+}
+
+/* CURSOR */
+.cursor {
+  width: 10px;
+  height: 10px;
+  background: #0071e3;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  z-index: 999;
+}
+
+/* HERO GLOW */
+.hero-glow {
+  background: radial-gradient(circle at center, rgba(0,113,227,0.25), transparent 60%);
+  filter: blur(100px);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: all 1.2s cubic-bezier(.16,1,.3,1);
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CARD CURSOR GLOW */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--x) var(--y), rgba(0,113,227,0.15), transparent 40%);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+section {
+  padding: 150px 0;
+}
+
+/* ===== visionOS SPATIAL COMPUTING ENGINE ===== */
+
+
+/* ===== FULL visionOS IMMERSIVE SPACE ===== */
+
+.space-room {
+  position: relative;
+  height: 700px;
+  perspective: 1800px;
+  overflow: hidden;
+  border-radius: 50px;
+}
+
+/* 3D world container */
+.space-world {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* ===== COLOR LIGHT SYSTEM (Apple-style ambient glow) ===== */
+
+.light {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.l1 {
+  background: radial-gradient(circle, #0071e3, transparent 60%);
+  top: -100px;
+  left: -120px;
+}
+
+.l2 {
+  background: radial-gradient(circle, #8a2be2, transparent 60%);
+  bottom: -120px;
+  right: -100px;
+}
+
+.l3 {
+  background: radial-gradient(circle, #00d4ff, transparent 60%);
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ===== SKILLS (VISION GLASS TILES) ===== */
+
+.skill {
+  position: absolute;
+
+  width: 90px;
+  height: 110px;
+  border-radius: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+  font-size: 10px;
+
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(0,0,0,0.08);
+
+  box-shadow:
+    0 30px 70px rgba(0,0,0,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  transition: transform 0.08s linear;
+}
+
+/* dark mode */
+.dark .skill {
+  background: rgba(20,20,20,0.55);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* SAFE SPATIAL GRID */
+.skill:nth-child(1){ top:10%; left:15%; }
+.skill:nth-child(2){ top:10%; left:35%; }
+.skill:nth-child(3){ top:10%; left:55%; }
+.skill:nth-child(4){ top:10%; left:75%; }
+
+.skill:nth-child(5){ top:35%; left:15%; }
+.skill:nth-child(6){ top:35%; left:35%; }
+.skill:nth-child(7){ top:35%; left:55%; }
+.skill:nth-child(8){ top:35%; left:75%; }
+
+.skill:nth-child(9){ top:60%; left:15%; }
+.skill:nth-child(10){ top:60%; left:35%; }
+.skill:nth-child(11){ top:60%; left:55%; }
+.skill:nth-child(12){ top:60%; left:75%; }
+
+/* hover = visionOS lift */
+.skill:hover {
+  transform: translateZ(90px) scale(1.12);
+}
+
+.space-world.blur .skill {
+  filter: blur(4px);
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.space-world.blur .skill.active {
+  filter: blur(0);
+  opacity: 1;
+}
+
+svg {
+  animation: floatWave 12s ease-in-out infinite alternate;
+}
+
+@keyframes floatWave {
+  from { transform: translateY(0px); }
+  to { transform: translateY(20px); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+<nav class="nav fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl rounded-full px-6 py-3 flex justify-between items-center">
+  <span class="font-semibold text-xl tracking-wide">
+    NF<span class="text-brand">.</span>
+  </span>
+
+  <div class="hidden md:flex gap-8 text-sm text-gray-600 dark:text-gray-300">
+    <a href="#home">Home</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <button id="mode" class="text-xl">🌙</button>
+</nav>
+
+<main class="max-w-6xl mx-auto px-6">
+
+<!-- HERO -->
+<section id="home" class="min-h-screen flex items-center relative reveal">
+
+  <div class="hero-glow"></div>
+
+  <div class="grid md:grid-cols-2 gap-28 items-center w-full">
+
+    <div class="text-center md:text-left">
+      <p class="text-sm tracking-[0.35em] text-gray-500 uppercase">
+        Software Engineer
+      </p>
+
+      <h1 class="text-7xl md:text-8xl font-semibold mt-5 leading-none">
+        NATHAN FASIL
+      </h1>
+
+      <p class="mt-8 text-xl text-gray-600 dark:text-gray-300 max-w-xl">
+        I design and build scalable digital systems with precision and performance.
+      </p>
+
+      <p id="type" class="mt-4 text-gray-500"></p>
+
+      <div class="mt-10 flex gap-4 justify-center md:justify-start">
+        <a href="#projects" class="px-7 py-3 rounded-full bg-brand text-white hover:scale-105 transition">
+          View Work
+        </a>
+        <a href="#contact" class="px-7 py-3 rounded-full border hover:bg-black/5 dark:hover:bg-white/10 transition">
+          Contact
+        </a>
+      </div>
+    </div>
+
+    <div class="flex justify-center md:justify-end reveal">
+      <div class="relative text-center">
+
+        <div class="absolute inset-0 bg-brand blur-[160px] opacity-30 rounded-full scale-125"></div>
+
+        <img src="images/nate.png"
+          class="w-80 h-80 rounded-full object-cover shadow-2xl relative mx-auto"
+          alt="profile">
+
+        <!-- STATS -->
+        <div class="flex justify-center gap-8 mt-8 bg-white/40 dark:bg-white/5 backdrop-blur-md px-6 py-4 rounded-2xl border border-black/10 dark:border-white/10">
+          <div>
+            <p class="text-2xl font-bold">10+</p>
+            <p class="text-sm text-gray-500">Projects</p>
+          </div>
+          <div>
+            <p class="text-2xl font-bold">3+</p>
+            <p class="text-sm text-gray-500">Years</p>
+          </div>
+          <div>
+            <p class="text-2xl font-bold">100%</p>
+            <p class="text-sm text-gray-500">Satisfaction</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal">
+  
+  <div class="grid md:grid-cols-2 gap-16 items-center">
+
+    <!-- LEFT: TEXT -->
+    <div class="space-y-6">
+      <h1 class="text-[#08fdd8] text-5xl md:text-6xl font-bold tracking-tighter">
+        Skills & Experience
+      </h1>
+
+      <div class="text-gray-600 dark:text-gray-300 text-lg space-y-4 font-light max-w-md">
+        <p>
+I build fast, modern websites and digital tools that work smoothly.        </p>
+
+        <p>
+Using tools like React and TypeScript, I create clean and interactive interfaces. I focus on making websites that are easy to use, look professional, and load fast on any device.        </p>
+
+        <p>
+I also build strong back-end systems and cloud workflows. From making databases faster to automating how code is deployed, I make sure apps work perfectly and look great at the same time.        </p>
+
+        <p>
+          Visit my <a href="https://linkedin.com/in/natekiddo" class="text-[#08fdd8] underline">LinkedIn</a>
+          or <a href="tel:0975730037" class="text-[#08fdd8] underline">contact</a> me.
+        </p>
+      </div>
+    </div>
+
+    <!-- RIGHT: 3D SKILLS SPACE -->
+    <div class="space-room w-full">
+
+      <div class="light l1"></div>
+      <div class="light l2"></div>
+      <div class="light l3"></div>
+
+      <div class="space-world">
+
+        <div class="skill" data-depth="3">React</div>
+        <div class="skill" data-depth="2">Node.js</div>
+        <div class="skill" data-depth="4">TypeScript</div>
+        <div class="skill" data-depth="1">PHP</div>
+
+        <div class="skill" data-depth="2">Docker</div>
+        <div class="skill" data-depth="3">Kubernetes</div>
+        <div class="skill" data-depth="1">SQL</div>
+        <div class="skill" data-depth="4">Tailwind</div>
+
+        <div class="skill" data-depth="2">Next.js</div>
+        <div class="skill" data-depth="3">Python</div>
+        <div class="skill" data-depth="1">AWS</div>
+        <div class="skill" data-depth="2">Git</div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- PROJECTS -->
+<section id="projects" class="text-center reveal">
+  <h2 class="text-3xl font-semibold mb-10">Projects</h2>
+
+  <div class="grid md:grid-cols-2 gap-8">
+    <div class="card p-8 rounded-3xl text-left">
+      <h3 class="font-semibold">E-Commerce Platform</h3>
+      <p class="text-sm text-gray-500 mt-2">
+        Full-stack system with authentication, payments, and dashboard.
+      </p>
+    </div>
+
+    <div class="card p-8 rounded-3xl text-left">
+      <h3 class="font-semibold">DevOps Automation</h3>
+      <p class="text-sm text-gray-500 mt-2">
+        CI/CD pipelines with Docker + Kubernetes deployment.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="text-center reveal">
+  <h2 class="text-3xl font-semibold mb-6">Experience</h2>
+  <p class="text-gray-500">Senior Software Engineer — 2022 - Present</p>
+  <p class="text-gray-500">Full Stack Developer — 2020 - 2022</p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="text-center reveal relative overflow-hidden">
+  <!-- background glow -->
+ <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0 rotate-180">
+  <svg viewBox="0 0 1440 320" class="w-full h-[200px]">
+    <path fill="url(#grad2)" d="M0,160L80,170C160,180,320,200,480,192C640,184,800,148,960,138.7C1120,128,1280,144,1360,152L1440,160L1440,0L0,0Z"></path>
+    <defs>
+      <linearGradient id="grad2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0071e3" stop-opacity="0.3"/>
+        <stop offset="100%" stop-color="#08fdd8" stop-opacity="0.15"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+
+  <h2 class="text-4xl font-semibold mb-4 relative z-10">
+    Let’s Build Something Great
+  </h2>
+
+  <p class="text-gray-500 mb-12 relative z-10">
+    High-performance systems start with a conversation.
+  </p>
+
+  <div class="max-w-4xl mx-auto p-6 rounded-3xl bg-white/60 dark:bg-white/5 backdrop-blur-2xl border border-black/10 dark:border-white/10 relative z-10 shadow-xl">
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- EMAIL -->
+      <div class="relative group p-[1px] rounded-2xl bg-gradient-to-r from-blue-500 via-brand to-blue-500">
+        <div class="card rounded-2xl p-6 text-left bg-white dark:bg-black">
+
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-brand/20 blur-xl"></div>
+
+          <p class="text-sm text-gray-500 relative z-10">Email</p>
+          <p class="font-semibold text-lg relative z-10">nathanfasil05@gmail.com</p>
+
+          <button onclick="navigator.clipboard.writeText('nathanfasil05@gmail.com')"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-xs px-4 py-1.5 rounded-full bg-brand text-white opacity-0 group-hover:opacity-100 transition">
+            Copy
+          </button>
+
+        </div>
+      </div>
+
+      <!-- OTHER CARDS -->
+      <a href="https://instagram.com/_natekiddo" target="_blank" class="card p-6 rounded-2xl text-left group">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-brand/10 blur-xl"></div>
+        <p class="text-sm text-gray-500 relative z-10">Instagram</p>
+        <p class="font-semibold relative z-10">@_natekiddo</p>
+      </a>
+
+      <a href="https://t.me/natekiddo" target="_blank" class="card p-6 rounded-2xl text-left group">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-brand/10 blur-xl"></div>
+        <p class="text-sm text-gray-500 relative z-10">Telegram</p>
+        <p class="font-semibold relative z-10">@natekiddo</p>
+      </a>
+
+      <a href="https://github.com/natekiddo" target="_blank" class="card p-6 rounded-2xl text-left group">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-brand/10 blur-xl"></div>
+        <p class="text-sm text-gray-500 relative z-10">GitHub</p>
+        <p class="font-semibold relative z-10">github.com/natekiddo</p>
+      </a>
+
+      <a href="https://linkedin.com/in/natekiddo" target="_blank" class="card p-6 rounded-2xl text-left md:col-span-2 group">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-brand/10 blur-xl"></div>
+        <p class="text-sm text-gray-500 relative z-10">LinkedIn</p>
+        <p class="font-semibold relative z-10">linkedin.com/in/natekiddo</p>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer class="text-center py-12 text-sm text-gray-500 border-t mt-20">
+  © 2026 Nathan Fasil. All rights reserved.
+</footer>
+
+</main>
+
+<script>
+  
+// dark mode
+document.getElementById("mode").onclick = () => {
+  document.documentElement.classList.toggle("dark");
+};
+
+// typing
+const text = "Full-stack engineering with modern scalable architectures.";
+let i = 0;
+function type() {
+  if (i < text.length) {
+    document.getElementById("type").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type, 40);
+  }
+}
+type();
+
+// cursor
+const c = document.getElementById("cursor");
+document.addEventListener("mousemove", e => {
+  c.style.left = e.clientX + "px";
+  c.style.top = e.clientY + "px";
+});
+
+// reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add("show");
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+// card glow tracking
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--x', e.clientX - rect.left + 'px');
+    card.style.setProperty('--y', e.clientY - rect.top + 'px');
+  });
+});
+
+
+let hoveredSkill = null;
+let time = 0;
+const skills = document.querySelectorAll(".skill");
+
+
+skills.forEach(skill => {
+  skill.addEventListener("mouseenter", () => {
+    hoveredSkill = skill;
+  });
+
+  skill.addEventListener("mouseleave", () => {
+    hoveredSkill = null;
+  });
+});
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+let smoothX = mouseX;
+let smoothY = mouseY;
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animate() {
+
+  // smooth “head tracking”
+  smoothX += (mouseX - smoothX) * 0.06;
+  smoothY += (mouseY - smoothY) * 0.06;
+
+  skills.forEach(skill => {
+    const rect = skill.getBoundingClientRect();
+
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+
+    const dx = smoothX - cx;
+    const dy = smoothY - cy;
+
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    // visionOS field (soft falloff)
+    const field = Math.exp(-dist / 280);
+
+    // magnetic pull
+    const moveX = dx * field * 0.5;
+    const moveY = dy * field * 0.5 ;
+
+    // depth layering
+    const depth = parseFloat(skill.dataset.depth || 2);
+    const z = field * depth * 60;
+
+    // spatial tilt
+    const rotX = -dy * field * 0.012;
+    const rotY = dx * field * 0.012;
+
+    // breathing scale
+    const scale = 1 + field * 0.12;
+
+    skill.style.transform =
+      `translate3d(${moveX}px, ${moveY}px, ${z}px)
+       rotateX(${rotX}deg)
+       rotateY(${rotY}deg)
+       scale(${scale})`;
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
+
