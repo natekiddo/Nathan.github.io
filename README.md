@@ -1,2 +1,2 @@
-# Nathan.github.io
+# nathan.github.io
 this is my portfolio 
