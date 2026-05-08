@@ -169,7 +169,65 @@ section {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.card {
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.02)
+  );
+  backdrop-filter: blur(20px);
+}/* ===== INSANE MODE ===== */
 
+/* animated gradient background */
+.bg-mesh {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,113,227,0.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0,255,200,0.2), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(140,0,255,0.2), transparent 50%);
+  filter: blur(80px);
+  z-index: -1;
+}
+
+/* glass upgrade */
+.card {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+}
+
+.dark .card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+/* floating orb */
+.orb {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  animation: float 12s infinite ease-in-out alternate;
+}
+
+@keyframes float {
+  from { transform: translateY(0px); }
+  to { transform: translateY(60px); }
+}
+
+/* timeline line glow */
+.timeline-line {
+  background: linear-gradient(to bottom, transparent, #08fdd8, transparent);
+  width: 2px;
+}
 /* ===== SKILLS (VISION GLASS TILES) ===== */
 
 .skill {
@@ -246,6 +304,263 @@ svg {
   from { transform: translateY(0px); }
   to { transform: translateY(20px); }
 }
+
+/* ===== PREMIUM PROJECT SYSTEM ===== */
+
+.project-card{
+  position:relative;
+
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+
+  min-height:420px;
+
+  overflow:hidden;
+
+  border-radius:42px;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.03)
+  );
+
+  backdrop-filter:blur(24px) saturate(180%);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+  0 30px 90px rgba(0,0,0,.18),
+  inset 0 1px 0 rgba(255,255,255,.08);
+
+  transition:
+  transform .7s cubic-bezier(.16,1,.3,1),
+  box-shadow .6s ease,
+  border .6s ease;
+}
+
+/* hover */
+.project-card:hover{
+  transform:
+  translateY(-10px)
+  scale(1.01);
+
+  border:1px solid rgba(255,255,255,.14);
+
+  box-shadow:
+  0 50px 140px rgba(0,0,0,.28),
+  0 0 50px rgba(0,113,227,.08);
+}
+
+/* IMAGE SIDE */
+.project-image{
+  position:relative;
+  overflow:hidden;
+}
+
+/* image */
+.project-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  transition:
+  transform 1.2s cubic-bezier(.16,1,.3,1),
+  filter .8s ease;
+}
+
+/* cinematic zoom */
+.project-card:hover img{
+  transform:scale(1.06);
+}
+
+/* cinematic overlay */
+.project-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+    to right,
+    transparent,
+    rgba(0,0,0,.35)
+  );
+
+  pointer-events:none;
+}
+
+/* soft glow */
+.project-image::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+  radial-gradient(
+    circle at 20% 20%,
+    rgba(255,255,255,.18),
+    transparent 40%
+  );
+
+  z-index:2;
+}
+
+/* CONTENT */
+.project-content{
+  position:relative;
+
+  padding:48px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* top label */
+.project-label{
+  display:inline-flex;
+  width:fit-content;
+
+  padding:8px 14px;
+
+  border-radius:999px;
+
+  font-size:10px;
+  font-weight:800;
+
+  letter-spacing:.25em;
+  text-transform:uppercase;
+
+  color:#0071e3;
+
+  background:rgba(0,113,227,.08);
+
+  border:1px solid rgba(0,113,227,.15);
+
+  margin-bottom:24px;
+}
+
+/* title */
+.project-content h3{
+  font-size:42px;
+  line-height:1;
+
+  font-weight:800;
+
+  letter-spacing:-0.05em;
+
+  margin-bottom:22px;
+}
+
+/* desc */
+.project-content p{
+  font-size:15px;
+  line-height:1.9;
+
+  opacity:.72;
+
+  max-width:420px;
+}
+
+/* tags */
+.project-tags{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:12px;
+
+  margin-top:34px;
+}
+
+/* tag */
+.project-tags span{
+  padding:9px 16px;
+
+  border-radius:999px;
+
+  font-size:11px;
+  font-weight:700;
+
+  background:rgba(255,255,255,.05);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  backdrop-filter:blur(10px);
+}
+
+/* subtle divider */
+.project-content::before{
+  content:"";
+  position:absolute;
+
+  left:0;
+  top:10%;
+
+  width:1px;
+  height:80%;
+
+  background:
+  linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255,255,255,.08),
+    transparent
+  );
+}
+
+/* mobile */
+@media(max-width:950px){
+
+  .project-card{
+    grid-template-columns:1fr;
+  }
+
+  .project-image{
+    height:300px;
+  }
+
+  .project-content{
+    padding:32px;
+  }
+
+  .project-content h3{
+    font-size:30px;
+  }
+
+  .project-content::before{
+    display:none;
+  }
+}
+
+.project-card:nth-child(even){
+  grid-template-columns:1fr 1.1fr;
+}
+
+.project-card:nth-child(even) .project-image{
+  order:2;
+}
+
+.project-card:nth-child(even) .project-content{
+  order:1;
+}
+
+.project-card:nth-child(even) .project-content::before{
+  left:auto;
+  right:0;
+}
+
+.system-title{
+  font-size:clamp(4rem,8vw,7rem);
+
+  font-weight:900;
+
+  letter-spacing:-0.08em;
+
+  line-height:.9;
+}
+
 </style>
 </head>
 
@@ -342,8 +657,10 @@ svg {
 
     <!-- LEFT: TEXT -->
     <div class="space-y-6">
-      <h1 class="text-[#08fdd8] text-5xl md:text-6xl font-bold tracking-tighter">
-        Skills & Experience
+     <h2 class="system-title text-center mb-10">
+  skills and
+  <span class="text-brand">exprience</span>
+</h2>
       </h1>
 
       <div class="text-gray-600 dark:text-gray-300 text-lg space-y-4 font-light max-w-md">
@@ -392,34 +709,148 @@ I also build strong back-end systems and cloud workflows. From making databases 
 
   </div>
 </section>
-<!-- PROJECTS -->
-<section id="projects" class="text-center reveal">
-  <h2 class="text-3xl font-semibold mb-10">Projects</h2>
 
-  <div class="grid md:grid-cols-2 gap-8">
-    <div class="card p-8 rounded-3xl text-left">
-      <h3 class="font-semibold">E-Commerce Platform</h3>
-      <p class="text-sm text-gray-500 mt-2">
-        Full-stack system with authentication, payments, and dashboard.
-      </p>
+
+<!--project-->
+<section id="projects" class="reveal py-32">
+<h2 class="system-title text-center mb-10">
+  Featured
+  <span class="text-brand">Systems</span>
+</h2>
+
+  <p class="text-center text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-16 text-lg leading-relaxed">
+  These projects represent real-world engineering systems focused on scalability, performance, and user experience. 
+  Each system is designed with production-level thinking — from architecture to deployment — simulating enterprise-grade solutions.
+</p>
+<br><br>
+<div class="space-y-10 max-w-5xl mx-auto">
+
+  <!-- PROJECT -->
+  <div class="project-card group">
+    
+    <div class="project-image">
+      <img src="images/OS.png" alt="">
     </div>
 
-    <div class="card p-8 rounded-3xl text-left">
-      <h3 class="font-semibold">DevOps Automation</h3>
-      <p class="text-sm text-gray-500 mt-2">
-        CI/CD pipelines with Docker + Kubernetes deployment.
+    <div class="project-content">
+      <span class="project-label">
+        ENTERPRISE SYSTEM
+      </span>
+
+      <h3>E-Commerce OS</h3>
+
+      <p>
+        Adaptive commerce engine with real-time inventory sync,
+        predictive scaling, and distributed service architecture.
       </p>
+
+      <div class="project-tags">
+        <span>Microservices</span>
+        <span>Redis</span>
+        <span>Stripe API</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PROJECT -->
+  <div class="project-card group">
+
+    <div class="project-image">
+      <img src="images/cloud.png" alt="">
+    </div>
+
+    <div class="project-content">
+      <span class="project-label">
+        CLOUD PLATFORM
+      </span>
+
+      <h3>Cloud Nexus</h3>
+
+      <p>
+        Self-healing Kubernetes orchestration layer for distributed
+        enterprise infrastructure and automated scaling.
+      </p>
+
+      <div class="project-tags">
+        <span>Kubernetes</span>
+        <span>AWS</span>
+        <span>Terraform</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PROJECT -->
+  <div class="project-card group">
+
+    <div class="project-image">
+      <img src="images/3d.png" alt="">
+    </div>
+
+    <div class="project-content">
+      <span class="project-label">
+        REAL-TIME ENGINE
+      </span>
+
+      <h3>Spatial Dash</h3>
+
+      <p>
+        Real-time 3D visualization engine processing millions
+        of live events with high-performance rendering.
+      </p>
+
+      <div class="project-tags">
+        <span>WebGL</span>
+        <span>Three.js</span>
+        <span>WebSockets</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</section>
+<!--exprience-->
+<section id="experience" class="reveal py-32">
+  <div class="mb-20">
+    <p class="text-brand font-bold tracking-[0.3em] uppercase text-xs">Career Path</p>
+    <h2 class="text-5xl font-black mt-2 tracking-tighter">Professional Timeline</h2>
+  </div>
+
+  <p class="text-gray-500 dark:text-gray-400 max-w-2xl mt-6 text-lg leading-relaxed">
+  A progression of hands-on engineering experience focused on building scalable systems, improving performance, 
+  and delivering production-ready software in collaborative environments.
+</p>
+<br><br>
+  <div class="timeline-container ml-6 space-y-20">
+    <div class="relative pl-14 group">
+      <div class="timeline-dot top-0"></div>
+      <div class="exp-card glass p-10 rounded-[2.5rem] border border-white/5 group-hover:border-brand/50 transition-all shadow-xl">
+        <span class="text-brand font-black text-xs tracking-[0.2em]">2022 — PRESENT</span>
+        <h3 class="text-3xl font-bold mt-3">Senior Software Engineer</h3>
+        <p class="text-gray-500 mt-4 text-lg font-light leading-relaxed">
+          Leading architecture for distributed systems. Reduced API latency by 40% and mentored a team of 5 developers in modern DevOps practices.
+        </p>
+        <div class="flex gap-3 mt-6">
+          <span class="px-4 py-1 rounded-full bg-brand/10 text-brand text-[10px] font-bold uppercase">System Design</span>
+          <span class="px-4 py-1 rounded-full bg-brand/10 text-brand text-[10px] font-bold uppercase">Kubernetes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative pl-14 group">
+      <div class="timeline-dot top-0 opacity-40 shadow-none"></div>
+      <div class="exp-card glass p-10 rounded-[2.5rem] border border-white/5 group-hover:border-brand/50 transition-all shadow-xl">
+        <span class="text-gray-400 font-black text-xs tracking-[0.2em]">2020 — 2022</span>
+        <h3 class="text-3xl font-bold mt-3">Full Stack Developer</h3>
+        <p class="text-gray-500 mt-4 text-lg font-light leading-relaxed">
+          Developed production-grade web applications with React and Node.js. Optimized legacy database schemas resulting in a 25% performance boost.
+        </p>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- EXPERIENCE -->
-<section id="experience" class="text-center reveal">
-  <h2 class="text-3xl font-semibold mb-6">Experience</h2>
-  <p class="text-gray-500">Senior Software Engineer — 2022 - Present</p>
-  <p class="text-gray-500">Full Stack Developer — 2020 - 2022</p>
-</section>
-
 <!-- CONTACT -->
 <section id="contact" class="text-center reveal relative overflow-hidden">
   <!-- background glow -->
@@ -535,6 +966,28 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+// MAGNETIC EFFECT
+document.querySelectorAll(".magnetic").forEach(el => {
+  el.addEventListener("mousemove", e => {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.03)`;
+  });
+
+  el.addEventListener("mouseleave", () => {
+    el.style.transform = "translate(0,0) scale(1)";
+  });
+});
+
+// PARALLAX SCROLL
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".orb").forEach((orb, i) => {
+    const speed = (i + 1) * 0.2;
+    orb.style.transform = `translateY(${window.scrollY * speed}px)`;
+  });
+});
 
 // card glow tracking
 document.querySelectorAll('.card').forEach(card => {
@@ -571,7 +1024,7 @@ document.addEventListener("mousemove", (e) => {
   mouseY = e.clientY;
 });
 
-function animate() {
+function animateskills() {
 
   // smooth “head tracking”
   smoothX += (mouseX - smoothX) * 0.06;
@@ -613,12 +1066,21 @@ function animate() {
        scale(${scale})`;
   });
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateskills);
 }
 
-animate();
+animateskills();
+
+document.querySelectorAll(".vision-card").forEach(card => {
+  card.addEventListener("mouseenter", () => {
+    card.style.zIndex = 20;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.zIndex = "";
+  });
+});
 </script>
 
 </body>
 </html>
-
