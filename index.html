@@ -1,158 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NATHAN FASIL | Software Engineer</title>
 
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="style.css">
+
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter'] },
+      colors: { brand: '#0071e3' }
+    }
+  }
+}
+</script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+<nav class="nav fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl rounded-full px-6 py-3 flex justify-between items-center">
+  <span class="font-semibold text-xl tracking-wide">
+    NF<span class="text-brand">.</span>
+  </span>
+
+  <div class="hidden md:flex gap-8 text-sm text-gray-600 dark:text-gray-300">
+    <a href="#home">Home</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <button id="mode" class="text-xl">🌙</button>
+</nav>
+
+<main class="max-w-6xl mx-auto px-6">
+
+<!-- HERO -->
+<section id="home" class="min-h-screen flex items-center relative reveal">
+
+  <div class="hero-glow"></div>
+
+  <div class="grid md:grid-cols-2 gap-28 items-center w-full">
+
+    <div class="text-center md:text-left">
+      <p class="text-sm tracking-[0.35em] text-gray-500 uppercase">
+        Software Engineer
+      </p>
+
+      <h1 class="text-7xl md:text-8xl font-semibold mt-5 leading-none">
+        NATHAN FASIL
+      </h1>
+
+      <p class="mt-8 text-xl text-gray-600 dark:text-gray-300 max-w-xl">
+        I design and build scalable digital systems with precision and performance.
+      </p>
+
+      <p id="type" class="mt-4 text-gray-500"></p>
+
+      <div class="mt-10 flex gap-4 justify-center md:justify-start">
+        <a href="#projects" class="px-7 py-3 rounded-full bg-brand text-white hover:scale-105 transition">
+          View Work
+        </a>
+        <a href="#contact" class="px-7 py-3 rounded-full border hover:bg-black/5 dark:hover:bg-white/10 transition">
+          Contact
+        </a>
+      </div>
+    </div>
+
+    <div class="flex justify-center md:justify-end reveal">
+      <div class="relative text-center">
+
+        <div class="absolute inset-0 bg-brand blur-[160px] opacity-30 rounded-full scale-125"></div>
+
+        <img src="images/nate.png"
+          class="w-80 h-80 rounded-full object-cover shadow-2xl relative mx-auto"
+          alt="profile">
+
+        <!-- STATS -->
+        <div class="flex justify-center gap-8 mt-8 bg-white/40 dark:bg-white/5 backdrop-blur-md px-6 py-4 rounded-2xl border border-black/10 dark:border-white/10">
+          <div>
+            <p class="text-2xl font-bold">5+</p>
+            <p class="text-sm text-gray-500">Projects</p>
+          </div>
+          <div>
+            <p class="text-2xl font-bold">2+</p>
+            <p class="text-sm text-gray-500">Years</p>
+          </div>
+          <div>
+            <p class="text-2xl font-bold">100%</p>
+            <p class="text-sm text-gray-500">Satisfaction</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal">
   
-// dark mode
-const modeBtn = document.getElementById("mode");
+  <div class="grid md:grid-cols-2 gap-16 items-center">
 
-modeBtn.onclick = () => {
+    <!-- LEFT: TEXT -->
+    <div class="space-y-6">
+     <h2 class="system-title text-center mb-10">
+  Skills and
+  <span class="text-brand">Exprience</span>
+</h2>
+      </h1>
 
-  document.documentElement.classList.toggle("dark");
+      <div class="text-gray-600 dark:text-gray-300 text-lg space-y-4 font-light max-w-md">
+        <p>
+I build fast, modern websites and digital tools that work smoothly.        </p>
 
-  // CHANGE ICON
-  if (document.documentElement.classList.contains("dark")) {
-    modeBtn.innerHTML = "☀️";
-  } else {
-    modeBtn.innerHTML = "🌙";
-  }
-};
+        <p>
+Using tools like React and TypeScript, I create clean and interactive interfaces. I focus on making websites that are easy to use, look professional, and load fast on any device.        </p>
 
-// typing
-const text = "Full-stack engineering with modern scalable architectures.";
-let i = 0;
-function type() {
-  if (i < text.length) {
-    document.getElementById("type").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(type, 40);
-  }
-}
-type();
+        <p>
+I also build strong back-end systems and cloud workflows. From making databases faster to automating how code is deployed, I make sure apps work perfectly and look great at the same time.        </p>
 
-// cursor
-const c = document.getElementById("cursor");
-document.addEventListener("mousemove", e => {
-  c.style.left = e.clientX + "px";
-  c.style.top = e.clientY + "px";
-});
+        <p>
+          Visit my <a href="https://linkedin.com/in/natekiddo" class="text-[blue] underline">LinkedIn</a>
+          or <a href="tel:0975730037" class="text-[blue] underline">contact</a> me.
+        </p>
+      </div>
+    </div>
 
-// reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add("show");
-  });
-}, { threshold: 0.15 });
+    <!-- RIGHT: 3D SKILLS SPACE -->
+    <div class="space-room w-full">
 
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-// MAGNETIC EFFECT
-document.querySelectorAll(".magnetic").forEach(el => {
-  el.addEventListener("mousemove", e => {
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+      <div class="light l1"></div>
+      <div class="light l2"></div>
+      <div class="light l3"></div>
 
-    el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.03)`;
-  });
+      <div class="space-world">
 
-  el.addEventListener("mouseleave", () => {
-    el.style.transform = "translate(0,0) scale(1)";
-  });
-});
+        <div class="skill" data-depth="3">React</div>
+        <div class="skill" data-depth="2">Node.js</div>
+        <div class="skill" data-depth="4">TypeScript</div>
+        <div class="skill" data-depth="1">PHP</div>
 
-// PARALLAX SCROLL
-window.addEventListener("scroll", () => {
-  document.querySelectorAll(".orb").forEach((orb, i) => {
-    const speed = (i + 1) * 0.2;
-    orb.style.transform = `translateY(${window.scrollY * speed}px)`;
-  });
-});
+        <div class="skill" data-depth="2">java</div>
+        <div class="skill" data-depth="3">css</div>
+        <div class="skill" data-depth="1">SQL</div>
+        <div class="skill" data-depth="4">Tailwind</div>
 
-// card glow tracking
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty('--x', e.clientX - rect.left + 'px');
-    card.style.setProperty('--y', e.clientY - rect.top + 'px');
-  });
-});
+        <div class="skill" data-depth="2">Next.js</div>
+        <div class="skill" data-depth="3">Python</div>
+        <div class="skill" data-depth="1">HTML</div>
+        <div class="skill" data-depth="2">Git</div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
-let hoveredSkill = null;
-let time = 0;
-const skills = document.querySelectorAll(".skill");
+<!--project-->
+<section id="projects" class="reveal py-32">
+<h2 class="system-title text-center mb-10">
+  Featured
+  <span class="text-brand">Systems</span>
+</h2>
+
+  <p class="text-center text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-16 text-lg leading-relaxed">
+  These projects represent real-world engineering systems focused on scalability, performance, and user experience. 
+  Each system is designed with production-level thinking — from architecture to deployment — simulating enterprise-grade solutions.
+</p>
+<br><br>
+<div class="space-y-10 max-w-5xl mx-auto">
+
+  <!-- PROJECT -->
+  <div class="project-card group">
+    
+    <div class="project-image">
+      <img src="images/evaluation.png" alt="">
+    </div>
+
+    <div class="project-content">
+      <span class="project-label">
+       EDUCATION PLATFORM
+      </span>
+
+      <h3>Student Evaluation System</h3>
+
+      <p>
+         A complete academic evaluation platform designed to manage student records,
+         course grading, instructor feedback, and performance analytics with a secure
+         role-based system.
+      </p>
+
+      <div class="project-tags">
+        <span>PHP</span>
+        <span>MySQL</span>
+        <span>XAMPP</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PROJECT -->
+  <div class="project-card group">
+
+    <div class="project-image">
+      <img src="images/bus.png" alt="">
+    </div>
+
+    <div class="project-content">
+      <span class="project-label">
+         TRANSPORT PLATFORM
+      </span>
+
+      <h3>MoveEt</h3>
+
+      <p>
+       A modern transportation and route management platform built with scalable
+        frontend architecture, real-time navigation workflows, and interactive UI systems.
+      </p>
+
+      <div class="project-tags">
+        <span>Next.js</span>
+        <span>Supabase</span>
+        <span>TypeScript</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PROJECT -->
+  <div class="project-card group">
+
+    <div class="project-image">
+      <img src="images/micro.png" alt="">
+    </div>
+
+    <div class="project-content">
+      <span class="project-label">
+         FINANCIAL SYSTEM
+      </span>
+
+      <h3>Micro Finance System</h3>
+
+      <p>
+       A secure financial management system designed for handling client accounts,
+       loan tracking, payment processing, and transaction reporting with scalable
+       database architecture.
+      </p>
+
+      <div class="project-tags">
+        <span>Java</span>
+        <span>SQL</span>
+        <span>Finance</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</section>
 
 
-skills.forEach(skill => {
-  skill.addEventListener("mouseenter", () => {
-    hoveredSkill = skill;
-  });
+<!-- FONT AWESOME ICONS -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-  skill.addEventListener("mouseleave", () => {
-    hoveredSkill = null;
-  });
-});
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
+<!-- EXPERIENCE -->
+<section id="experience" class="relative py-40 overflow-hidden">
 
-let smoothX = mouseX;
-let smoothY = mouseY;
+  <!-- HEADER -->
+  <div class="text-center mb-32 relative z-10">
 
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
+    <p class="text-brand font-bold tracking-[0.35em] uppercase text-xs mb-4">
+      Career Path
+    </p>
 
-function animateskills() {
+    <h2 class="system-title leading-none">
+      Professional
+      <span class="text-brand">Timeline</span>
+    </h2>
 
-  // smooth “head tracking”
-  smoothX += (mouseX - smoothX) * 0.06;
-  smoothY += (mouseY - smoothY) * 0.06;
+    <p class="max-w-4xl mx-auto mt-10 text-xl leading-relaxed text-gray-500 dark:text-gray-400">
+      A progression of hands-on engineering experience focused on building scalable systems,
+      improving performance, and delivering production-ready software in collaborative environments.
+    </p>
 
-  skills.forEach(skill => {
-    const rect = skill.getBoundingClientRect();
+  </div>
 
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
+  <!-- TIMELINE -->
+  <div class="relative max-w-7xl mx-auto px-6">
 
-    const dx = smoothX - cx;
-    const dy = smoothY - cy;
+    <!-- CENTER LINE -->
+    <div class="hidden md:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-[2px]">
+      <div class="h-full timeline-gradient"></div>
+    </div>
 
-    const dist = Math.sqrt(dx * dx + dy * dy);
+    <div class="space-y-28">
 
-    // visionOS field (soft falloff)
-    const field = Math.exp(-dist / 280);
+      <!-- ITEM -->
+      <div class="grid md:grid-cols-2 gap-28 items-center relative">
 
-    // magnetic pull
-    const moveX = dx * field * 0.5;
-    const moveY = dy * field * 0.5 ;
+        <div></div>
 
-    // depth layering
-    const depth = parseFloat(skill.dataset.depth || 2);
-    const z = field * depth * 60;
+        <!-- DOT -->
+        <div class="hidden md:flex absolute left-1/2 top-20 -translate-x-1/2 z-20">
+          <div class="timeline-dot bg-blue-500"></div>
+        </div>
 
-    // spatial tilt
-    const rotX = -dy * field * 0.012;
-    const rotY = dx * field * 0.012;
+        <!-- CARD -->
+        <div class="timeline-card">
 
-    // breathing scale
-    const scale = 1 + field * 0.12;
+          <div class="timeline-icon blue">
+            <i class="fa-solid fa-crown"></i>
+          </div>
 
-    skill.style.transform =
-      `translate3d(${moveX}px, ${moveY}px, ${z}px)
-       rotateX(${rotX}deg)
-       rotateY(${rotY}deg)
-       scale(${scale})`;
-  });
+          <div>
+            <span class="timeline-year text-blue-500">
+              2026 — PRESENT
+            </span>
 
-  requestAnimationFrame(animateskills);
-}
+            <h3 class="timeline-title">
+             Full-Stack Developer
+            </h3>
 
-animateskills();
+            <p class="timeline-desc">
+               Building scalable web applications and improving both frontend and backend
+               systems using modern development tools and cloud-based workflows.
+            </p>
 
-document.querySelectorAll(".vision-card").forEach(card => {
-  card.addEventListener("mouseenter", () => {
-    card.style.zIndex = 20;
-  });
+            <div class="timeline-tags">
+                <span>React</span>
+                <span>Node.js</span>
+                <span>SQL</span>
+                <span>Git</span>
+            </div>
+          </div>
 
-  card.addEventListener("mouseleave", () => {
-    card.style.zIndex = "";
-  });
-});
+        </div>
+      </div>
+
+      <!-- ITEM -->
+      <div class="grid md:grid-cols-2 gap-28 items-center relative">
+
+        <!-- DOT -->
+        <div class="hidden md:flex absolute left-1/2 top-20 -translate-x-1/2 z-20">
+          <div class="timeline-dot bg-purple-500"></div>
+        </div>
+
+        <!-- CARD -->
+        <div class="timeline-card">
+
+          <div class="timeline-icon purple">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+
+          <div>
+            <span class="timeline-year text-purple-500">
+              2025 — 2026
+            </span>
+
+            <h3 class="timeline-title">
+              Web Developer
+            </h3>
+
+            <p class="timeline-desc">
+              Developed responsive interfaces and interactive user experiences using
+             modern frontend technologies and clean UI design principles.
+            </p>
+
+            <div class="timeline-tags">
+              <span>React</span>
+              <span>TypeScript</span>
+              <span>Next.js</span>
+              <span>Tailwind</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div></div>
+      </div>
+
+      <!-- ITEM -->
+      <div class="grid md:grid-cols-2 gap-28 items-center relative">
+
+        <div></div>
+
+        <!-- DOT -->
+        <div class="hidden md:flex absolute left-1/2 top-20 -translate-x-1/2 z-20">
+          <div class="timeline-dot bg-cyan-400"></div>
+        </div>
+
+        <!-- CARD -->
+        <div class="timeline-card">
+
+          <div class="timeline-icon cyan">
+            <i class="fa-solid fa-server"></i>
+          </div>
+
+          <div>
+            <span class="timeline-year text-cyan-400">
+              2024 — 2025
+            </span>
+
+            <h3 class="timeline-title">
+              Backend Developer
+            </h3>
+
+            <p class="timeline-desc">
+              Built APIs, managed databases, and improved application performance through
+              optimized backend architecture and server-side development.
+            </p>
+
+            <div class="timeline-tags">
+              <span>Node.js</span>
+              <span>Express</span>
+              <span>SQL</span>
+              <span>Redis</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ITEM -->
+      <div class="grid md:grid-cols-2 gap-28 items-center relative">
+
+        <!-- DOT -->
+        <div class="hidden md:flex absolute left-1/2 top-20 -translate-x-1/2 z-20">
+          <div class="timeline-dot bg-orange-400"></div>
+        </div>
+
+        <!-- CARD -->
+        <div class="timeline-card">
+
+          <div class="timeline-icon orange">
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+
+          <div>
+            <span class="timeline-year text-orange-400">
+              2023 — 2024
+            </span>
+
+            <h3 class="timeline-title">
+              Junior Developer
+            </h3>
+
+            <p class="timeline-desc">
+              Started developing websites and internal tools while learning software engineering,
+              version control, and modern development workflows.
+            </p>
+
+            <div class="timeline-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Git</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- CONTACT -->
+<section id="contact" class="text-center reveal relative overflow-hidden">
+  <!-- background glow -->
+ <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0 rotate-180">
+  <svg viewBox="0 0 1440 320" class="w-full h-[200px]">
+    <path fill="url(#grad2)" d="M0,160L80,170C160,180,320,200,480,192C640,184,800,148,960,138.7C1120,128,1280,144,1360,152L1440,160L1440,0L0,0Z"></path>
+    <defs>
+      <linearGradient id="grad2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0071e3" stop-opacity="0.3"/>
+        <stop offset="100%" stop-color="#08fdd8" stop-opacity="0.15"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+
+  <h2 class="text-4xl font-semibold mb-4 relative z-10">
+    Let’s Build Something Great
+  </h2>
+
+  <p class="text-gray-500 mb-12 relative z-10">
+    High-performance systems start with a conversation.
+  </p>
+
+  <div class="max-w-4xl mx-auto p-6 rounded-3xl bg-white/60 dark:bg-white/5 backdrop-blur-2xl border border-black/10 dark:border-white/10 relative z-10 shadow-xl">
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- EMAIL -->
+      <div class="relative group p-[1px] rounded-2xl bg-gradient-to-r from-blue-500 via-brand to-blue-500">
+        <div class="card rounded-2xl p-6 text-left bg-white dark:bg-black">
+
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-brand/20 blur-xl"></div>
+
+          <p class="text-sm text-gray-500 relative z-10">Email</p>
+          <p class="font-semibold text-lg relative z-10">nathanfasil05@gmail.com</p>
+
+          <button onclick="navigator.clipboard.writeText('nathanfasil05@gmail.com')"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-xs px-4 py-1.5 rounded-full bg-brand text-white opacity-0 group-hover:opacity-100 transition">
+            Copy
+          </button>
+
+        </div>
+      </div>
+
+      <!-- OTHER CARDS -->
+      <a href="https://instagram.com/_natekiddo" target="_blank" class="card p-6 rounded-2xl text-left group">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-brand/10 blur-xl"></div>
+        <p class="text-sm text-gray-500 relative z-10">Instagram</p>
+        <p class="font-semibold relative z-10">@_natekiddo</p>
+      </a>
+
+      <a href="https://t.me/natekiddo" target="_blank" class="card p-6 rounded-2xl text-left group">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-brand/10 blur-xl"></div>
+        <p class="text-sm text-gray-500 relative z-10">Telegram</p>
+        <p class="font-semibold relative z-10">@natekiddo</p>
+      </a>
+
+      <a href="https://github.com/natekiddo" target="_blank" class="card p-6 rounded-2xl text-left group">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-brand/10 blur-xl"></div>
+        <p class="text-sm text-gray-500 relative z-10">GitHub</p>
+        <p class="font-semibold relative z-10">github.com/natekiddo</p>
+      </a>
+
+      <a href="https://linkedin.com/in/natekiddo" target="_blank" class="card p-6 rounded-2xl text-left md:col-span-2 group">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-brand/10 blur-xl"></div>
+        <p class="text-sm text-gray-500 relative z-10">LinkedIn</p>
+        <p class="font-semibold relative z-10">linkedin.com/in/natekiddo</p>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer class="text-center py-12 text-sm text-gray-500 border-t mt-20">
+  © 2026 Nathan Fasil. All rights reserved.
+</footer>
+
+<!-- KEEP ALL YOUR HTML CONTENT HERE -->
+<!-- everything from NAV until footer -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
