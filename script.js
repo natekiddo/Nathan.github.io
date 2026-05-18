@@ -1,0 +1,158 @@
+
+  
+// dark mode
+const modeBtn = document.getElementById("mode");
+
+modeBtn.onclick = () => {
+
+  document.documentElement.classList.toggle("dark");
+
+  // CHANGE ICON
+  if (document.documentElement.classList.contains("dark")) {
+    modeBtn.innerHTML = "☀️";
+  } else {
+    modeBtn.innerHTML = "🌙";
+  }
+};
+
+// typing
+const text = "Full-stack engineering with modern scalable architectures.";
+let i = 0;
+function type() {
+  if (i < text.length) {
+    document.getElementById("type").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type, 40);
+  }
+}
+type();
+
+// cursor
+const c = document.getElementById("cursor");
+document.addEventListener("mousemove", e => {
+  c.style.left = e.clientX + "px";
+  c.style.top = e.clientY + "px";
+});
+
+// reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add("show");
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+// MAGNETIC EFFECT
+document.querySelectorAll(".magnetic").forEach(el => {
+  el.addEventListener("mousemove", e => {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.03)`;
+  });
+
+  el.addEventListener("mouseleave", () => {
+    el.style.transform = "translate(0,0) scale(1)";
+  });
+});
+
+// PARALLAX SCROLL
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".orb").forEach((orb, i) => {
+    const speed = (i + 1) * 0.2;
+    orb.style.transform = `translateY(${window.scrollY * speed}px)`;
+  });
+});
+
+// card glow tracking
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--x', e.clientX - rect.left + 'px');
+    card.style.setProperty('--y', e.clientY - rect.top + 'px');
+  });
+});
+
+
+let hoveredSkill = null;
+let time = 0;
+const skills = document.querySelectorAll(".skill");
+
+
+skills.forEach(skill => {
+  skill.addEventListener("mouseenter", () => {
+    hoveredSkill = skill;
+  });
+
+  skill.addEventListener("mouseleave", () => {
+    hoveredSkill = null;
+  });
+});
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+let smoothX = mouseX;
+let smoothY = mouseY;
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateskills() {
+
+  // smooth “head tracking”
+  smoothX += (mouseX - smoothX) * 0.06;
+  smoothY += (mouseY - smoothY) * 0.06;
+
+  skills.forEach(skill => {
+    const rect = skill.getBoundingClientRect();
+
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+
+    const dx = smoothX - cx;
+    const dy = smoothY - cy;
+
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    // visionOS field (soft falloff)
+    const field = Math.exp(-dist / 280);
+
+    // magnetic pull
+    const moveX = dx * field * 0.5;
+    const moveY = dy * field * 0.5 ;
+
+    // depth layering
+    const depth = parseFloat(skill.dataset.depth || 2);
+    const z = field * depth * 60;
+
+    // spatial tilt
+    const rotX = -dy * field * 0.012;
+    const rotY = dx * field * 0.012;
+
+    // breathing scale
+    const scale = 1 + field * 0.12;
+
+    skill.style.transform =
+      `translate3d(${moveX}px, ${moveY}px, ${z}px)
+       rotateX(${rotX}deg)
+       rotateY(${rotY}deg)
+       scale(${scale})`;
+  });
+
+  requestAnimationFrame(animateskills);
+}
+
+animateskills();
+
+document.querySelectorAll(".vision-card").forEach(card => {
+  card.addEventListener("mouseenter", () => {
+    card.style.zIndex = 20;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.zIndex = "";
+  });
+});
